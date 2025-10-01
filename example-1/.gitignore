@@ -1,2 +1,15 @@
 hello
 hello-dbg
+
+*.0
+
+*.d
+
+*~
+*.swp
+*.swo
+
+*.bak
+
+core
+core.*
