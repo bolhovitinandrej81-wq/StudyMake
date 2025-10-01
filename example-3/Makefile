@@ -1,21 +1,24 @@
-# Переменные
-TARGET = program
-SRC  = main.c helper.c
-OBJ  = main.c helper.o
-CC    = gcc
-CFLAGS  = -Wall
+.PHONY: all debug release clean
 
-$(TARGET): $(OBJ)
-	    $(CC) $(CFLAGS)  -o $(TARGET) $(OBJ)
+RELEASE_FLAGS = -02 -Wall -DNDEBUG
+DEBUG_FLAGS   = g -00 -Wall
+RELEASE_EXEC  = Kazino-Royal
+DEBUG_EXEC    = Kazino-Royal.dbg
+SOURCE        = Kazino-Royal.cpp
 
-main.o: main.c helper.h
-        $(CC) $(CFLAGS) -c main.c
-        
-helper.o: helper.c helper.h
-	    $(CC) $(CFLAGS) -c helper.c
+all: debug release
+
+debug: $(DEBUG_EXEC)
+
+$(DEBUG_EXEC): Kazino-Royal.cpp
+        g++ $(DEBUG_FLAGS) Kazino-Royal.cpp -o $(DEBUG_EXEC)
+
+release: $(RELEASE_EXEC)
+
+$(RELEASE_EXEC): Kazino-Royal.cpp
+        g++ $(RELEASE_FLAGS) Kazino-Royal.cpp -o $(RELEASE_EXEC)
 
 clean:
-	rm -f $(OBJ) $(TARGET)
-	
-.PHONY: clean
+        rm -f $(RELEASE_EXEC) $(DEBUG_EXEC)
+
 
