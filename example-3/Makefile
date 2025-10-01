@@ -1,7 +1,7 @@
 .PHONY: all debug release clean
 
-RELEASE_FLAGS = -02 -Wall -DNDEBUG
-DEBUG_FLAGS   = g -00 -Wall
+RELEASE_FLAGS = -O2 -Wall -DNDEBUG
+DEBUG_FLAGS   = -g -O0 -Wall
 RELEASE_EXEC  = Kazino-Royal
 DEBUG_EXEC    = Kazino-Royal.dbg
 SOURCE        = Kazino-Royal.cpp
@@ -11,14 +11,14 @@ all: debug release
 debug: $(DEBUG_EXEC)
 
 $(DEBUG_EXEC): Kazino-Royal.cpp
-        g++ $(DEBUG_FLAGS) Kazino-Royal.cpp -o $(DEBUG_EXEC)
+	g++ $(DEBUG_FLAGS) Kazino-Royal.cpp -o $(DEBUG_EXEC)
 
 release: $(RELEASE_EXEC)
 
 $(RELEASE_EXEC): Kazino-Royal.cpp
-        g++ $(RELEASE_FLAGS) Kazino-Royal.cpp -o $(RELEASE_EXEC)
+	g++ $(RELEASE_FLAGS) Kazino-Royal.cpp -o $(RELEASE_EXEC)
 
 clean:
-        rm -f $(RELEASE_EXEC) $(DEBUG_EXEC)
+	rm -f $(RELEASE_EXEC) $(DEBUG_EXEC)
 
 
